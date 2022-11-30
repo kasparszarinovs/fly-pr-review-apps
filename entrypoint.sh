@@ -24,6 +24,7 @@ org="${INPUT_ORG:-${FLY_ORG:-personal}}"
 image="$INPUT_IMAGE"
 config="$INPUT_CONFIG"
 dockerfile="$INPUT_DOCKERFILE"
+ignorefile="$INPUT_DOCKERIGNORE"
 
 if ! echo "$app" | grep "$PR_NUMBER"; then
   echo "For safety, this action requires the app's name to contain the PR number."
@@ -44,7 +45,7 @@ if ! flyctl status --app "$app"; then
   fi
   flyctl deploy --app "$app" --image "$image" --region "$region" --strategy immediate
 elif [ "$INPUT_UPDATE" != "false" ]; then
-  flyctl deploy --dockerfile "$dockerfile" --config "$config" --app "$app" --image "$image" --region "$region" --strategy immediate 
+  flyctl deploy --dockerfile "$dockerfile" --ignorefile "$ignorefile" --config "$config" --app "$app" --image "$image" --region "$region" --strategy immediate 
 fi
 
 # Attach postgres cluster to the app if specified.
