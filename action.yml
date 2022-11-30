@@ -27,3 +27,5 @@ inputs:
     default: true
   secrets:
     description: Secrets to be set on the app. Separate multiple secrets with a space, i.e., `FIRST_SECRET=secret1 SECOND_SECRET=secret2`, or you can also pass secrets stored in github via interpolation
+  dockerfile:
+    description: Optional path to a custom Dockerfile, relative to `path` parameter, if specified.
